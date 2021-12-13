@@ -1,5 +1,12 @@
 <template>
-  <div>Detail</div>
+  <div class="container">
+    <BaseDetailBackButton />
+
+    <div class="my-12 flex justify-between items-center">
+      <BaseDetailFlag />
+      <BaseDetailBio />
+    </div>
+  </div>
 </template>
 
 <script>
