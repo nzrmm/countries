@@ -1,9 +1,5 @@
 <template>
-  <div class="container">Hello World</div>
+  <MainLayout>
+    <router-view></router-view>
+  </MainLayout>
 </template>
-
-<script>
-export default {};
-</script>
-
-<style lang="scss" scoped></style>
