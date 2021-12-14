@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap -mx-3">
-    <template v-for="(country, index) in countries" :key="index">
+    <template v-for="country in countries" :key="country.name.common">
       <BaseCountryCard :country="country" />
     </template>
   </div>
