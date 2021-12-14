@@ -27,6 +27,7 @@ export default {
       html.classList.toggle('dark');
       const theme = html.classList.contains('dark') ? 'Dark' : 'Light';
 
+      // Set to change icon
       themeMode.value = theme;
     };
 

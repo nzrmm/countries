@@ -6,12 +6,33 @@
       class="p-3 bg-white dark:bg-dark-d-blue rounded-xl shadow-lg shadow-dark-vd-blue/10 dark:shadow-dark-vd-blue/50"
     >
       <img
-        src="@/assets/images/dummy.jpg"
+        :src="country.flags.png"
         class="w-full h-40 rounded-lg"
         alt="Image"
       />
 
-      <BaseCountryCardDesc />
+      <BaseCountryCardDesc :countryDesc="countryDesc" />
     </div>
   </div>
 </template>
+
+<script>
+import { reactive } from 'vue';
+export default {
+  props: ['country'],
+  setup(props) {
+    const country = props.country;
+
+    const countryDesc = reactive({
+      name: country.name.common,
+      population: country.population,
+      region: country.region,
+      capital: country.capital ? country.capital[0] : '-',
+    });
+
+    return {
+      countryDesc,
+    };
+  },
+};
+</script>
