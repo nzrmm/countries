@@ -1,7 +1,11 @@
 <template>
   <div class="w-5/12">
-    <div class="w-full h-96 bg-dark-d-blue rounded-xl">
-      <img src="" class="rounded-lg" alt="" />
+    <div class="p-3 h-96 bg-light-d-gray/50 dark:bg-dark-d-blue rounded-xl">
+      <img
+        src="@/assets/images/dummy.jpg"
+        class="h-full rounded-lg"
+        alt="flag-image"
+      />
     </div>
   </div>
 </template>

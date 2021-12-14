@@ -1,6 +1,6 @@
 <template>
   <select
-    class="px-4 py-4 rounded-lg bg-dark-d-blue text-white text-sm focus:ring-2 ring-white/10 outline-none"
+    class="px-4 py-4 rounded-lg bg-white dark:bg-dark-d-blue text-gray-900 dark:text-white text-sm focus:ring-2 ring-dark-vd-blue/10 dark:ring-white/10 outline-none"
   >
     <option selected value="all" class="rounded-lg py-4">All Country</option>
     <option value="africa">Africa</option>
