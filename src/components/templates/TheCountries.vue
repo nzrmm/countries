@@ -14,7 +14,7 @@ export default {
   setup() {
     const store = useStore();
     const countries = computed(() => {
-      return store.state.countries;
+      return store.getters.countries;
     });
 
     return {

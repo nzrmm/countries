@@ -5,6 +5,21 @@ import { allCountries, searchCountries, regionCountries } from '@/constant/api';
 const store = createStore({
   state: {
     countries: [],
+    keyword: '',
+  },
+  getters: {
+    countries(state) {
+      if (state.keyword == '') {
+        return state.countries;
+      } else {
+        const filterCountries = state.countries.filter((country) =>
+          country.name.common
+            .toLowerCase()
+            .includes(state.keyword.toLowerCase())
+        );
+        return filterCountries;
+      }
+    },
   },
   mutations: {
     getAllCountries(state, data) {
@@ -15,6 +30,9 @@ const store = createStore({
     },
     getRegionCountries(state, data) {
       state.countries = data;
+    },
+    handleSearchKeyword(state, keyword) {
+      state.keyword = keyword;
     },
   },
   actions: {
@@ -27,21 +45,6 @@ const store = createStore({
         .catch((error) => {
           console.log(error);
         });
-    },
-    getSearchCountries({ commit, dispatch }, keyword) {
-      if (keyword == '') {
-        dispatch('getAllCountries');
-      } else {
-        console.log(keyword);
-        axios
-          .get(`${searchCountries}${keyword}`)
-          .then((response) => {
-            commit('getSearchCountries', response.data);
-          })
-          .catch((error) => {
-            alert('Country not found !');
-          });
-      }
     },
     getRegionCountries({ commit, dispatch }, region) {
       console.log(region);
