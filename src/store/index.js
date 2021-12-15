@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import { allCountries, searchCountries } from '@/constant/api';
+import { allCountries, searchCountries, regionCountries } from '@/constant/api';
 
 const store = createStore({
   state: {
@@ -11,6 +11,9 @@ const store = createStore({
       state.countries = data;
     },
     getSearchCountries(state, data) {
+      state.countries = data;
+    },
+    getRegionCountries(state, data) {
       state.countries = data;
     },
   },
@@ -37,6 +40,21 @@ const store = createStore({
           })
           .catch((error) => {
             alert('Country not found !');
+          });
+      }
+    },
+    getRegionCountries({ commit, dispatch }, region) {
+      console.log(region);
+      if (region === 'all') {
+        dispatch('getAllCountries');
+      } else {
+        axios
+          .get(`${regionCountries}${region}`)
+          .then((response) => {
+            commit('getRegionCountries', response.data);
+          })
+          .catch((error) => {
+            alert('Region not found !');
           });
       }
     },
