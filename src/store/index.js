@@ -1,11 +1,12 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import { allCountries, searchCountries, regionCountries } from '@/constant/api';
+import { allCountries, regionCountries } from '@/constant/api';
 
 const store = createStore({
   state: {
     countries: [],
     keyword: '',
+    isLoading: false
   },
   getters: {
     countries(state) {
@@ -20,6 +21,12 @@ const store = createStore({
         return filterCountries;
       }
     },
+    keyword(state) {
+      return state.keyword;
+    },
+    isLoading(state) {
+      return state.isLoading;
+    }
   },
   mutations: {
     getAllCountries(state, data) {
@@ -36,7 +43,8 @@ const store = createStore({
     },
   },
   actions: {
-    getAllCountries({ commit }) {
+    getAllCountries({ state, commit }) {
+      state.isLoading = true;
       axios
         .get(allCountries)
         .then((response) => {
@@ -44,13 +52,16 @@ const store = createStore({
         })
         .catch((error) => {
           console.log(error);
+        })
+        .finally(() => {
+          state.isLoading = false
         });
     },
-    getRegionCountries({ commit, dispatch }, region) {
-      console.log(region);
+    getRegionCountries({ state, commit, dispatch }, region) {
       if (region === 'all') {
         dispatch('getAllCountries');
       } else {
+        state.isLoading = true;
         axios
           .get(`${regionCountries}${region}`)
           .then((response) => {
@@ -58,7 +69,10 @@ const store = createStore({
           })
           .catch((error) => {
             alert('Region not found !');
-          });
+          })
+          .finally(() => {
+            state.isLoading = false;
+          })
       }
     },
   },
