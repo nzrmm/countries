@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 py-6 text-gray-900 dark:text-white">
     <router-link
-      :to="{ name: 'Detail', params: { name: 'indonesia' } }"
+      :to="{ name: 'Detail', params: { name: name.toLowerCase() } }"
       class="text-xl font-semibold"
       >{{ name }}</router-link
     >

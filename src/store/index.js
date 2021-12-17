@@ -1,12 +1,13 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-import { allCountries, regionCountries } from '@/constant/api';
+import { allCountries, regionCountries, detailCountry } from '@/constant/api';
 
 const store = createStore({
   state: {
     countries: [],
+    country: null,
     keyword: '',
-    isLoading: false
+    isLoading: false,
   },
   getters: {
     countries(state) {
@@ -21,12 +22,15 @@ const store = createStore({
         return filterCountries;
       }
     },
+    country(state) {
+      return state.country;
+    },
     keyword(state) {
       return state.keyword;
     },
     isLoading(state) {
       return state.isLoading;
-    }
+    },
   },
   mutations: {
     getAllCountries(state, data) {
@@ -41,6 +45,9 @@ const store = createStore({
     handleSearchKeyword(state, keyword) {
       state.keyword = keyword;
     },
+    getCountryByName(state, keyword) {
+      state.country = keyword;
+    },
   },
   actions: {
     getAllCountries({ state, commit }) {
@@ -54,7 +61,7 @@ const store = createStore({
           console.log(error);
         })
         .finally(() => {
-          state.isLoading = false
+          state.isLoading = false;
         });
     },
     getRegionCountries({ state, commit, dispatch }, region) {
@@ -72,8 +79,22 @@ const store = createStore({
           })
           .finally(() => {
             state.isLoading = false;
-          })
+          });
       }
+    },
+    getCountryByName({ state, commit }, name) {
+      state.isLoading = true;
+      axios
+        .get(`${detailCountry}${name}`)
+        .then((response) => {
+          commit('getCountryByName', response.data[0]);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          state.isLoading = false;
+        });
     },
   },
 });

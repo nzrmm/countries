@@ -12,6 +12,7 @@ const routes = [
     path: '/detail/:name',
     name: 'Detail',
     component: Detail,
+    props: true,
   },
 ];
 
