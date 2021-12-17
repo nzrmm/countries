@@ -22,21 +22,9 @@ const store = createStore({
         return filterCountries;
       }
     },
-    country(state) {
-      return state.country;
-    },
-    keyword(state) {
-      return state.keyword;
-    },
-    isLoading(state) {
-      return state.isLoading;
-    },
   },
   mutations: {
     getAllCountries(state, data) {
-      state.countries = data;
-    },
-    getSearchCountries(state, data) {
       state.countries = data;
     },
     getRegionCountries(state, data) {

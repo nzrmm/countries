@@ -1,42 +1,40 @@
 <template>
   <div class="px-4 py-6 text-gray-900 dark:text-white">
     <router-link
-      :to="{ name: 'Detail', params: { name: name.toLowerCase() } }"
+      :to="{ name: 'Detail', params: { name: name.common.toLowerCase() } }"
       class="text-xl font-semibold"
-      >{{ name }}</router-link
+      >{{ name.common }}</router-link
     >
 
     <div class="mt-6">
-      <p class="mb-1.5">
-        Population:
-        <span class="text-gray-900/60 dark:text-white/60">{{
-          population
-        }}</span>
-      </p>
-      <p class="mb-1.5">
-        Region:
-        <span class="text-gray-900/60 dark:text-white/60">{{ region }}</span>
-      </p>
-      <p class="mb-1.5">
-        Capital:
-        <span class="text-gray-900/60 dark:text-white/60">{{ capital }}</span>
-      </p>
+      <Information>
+        <template v-slot:key>Population</template>
+        <template v-slot:val>{{ population }}</template>
+      </Information>
+
+      <Information>
+        <template v-slot:key>Region</template>
+        <template v-slot:val>{{ region }}</template>
+      </Information>
+
+      <Information>
+        <template v-slot:key>Capital</template>
+        <template v-for="capital in capitals" v-slot:val>
+          {{ capital }}
+        </template>
+      </Information>
     </div>
   </div>
 </template>
 
 <script>
+import { toRefs } from 'vue';
+import Information from '../atoms/Information.vue';
+
 export default {
   props: ['countryDesc'],
   setup(props) {
-    const { name, population, region, capital } = props.countryDesc;
-
-    return {
-      name,
-      population,
-      region,
-      capital,
-    };
+    return { ...toRefs(props.countryDesc) };
   },
 };
 </script>

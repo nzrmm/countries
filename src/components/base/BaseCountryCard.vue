@@ -5,11 +5,7 @@
     <div
       class="p-3 bg-white dark:bg-dark-d-blue rounded-xl shadow-lg shadow-dark-vd-blue/10 dark:shadow-dark-vd-blue/50"
     >
-      <img
-        :src="country.flags.png"
-        class="w-full h-40 rounded-lg"
-        alt="Image"
-      />
+      <img :src="flags.png" class="w-full h-40 rounded-lg" alt="Image" />
 
       <BaseCountryCardDesc :countryDesc="countryDesc" />
     </div>
@@ -18,19 +14,21 @@
 
 <script>
 import { reactive } from 'vue';
+
 export default {
   props: ['country'],
   setup(props) {
-    const country = props.country;
+    const { flags, name, population, region, capital } = props.country;
 
     const countryDesc = reactive({
-      name: country.name.common,
-      population: country.population,
-      region: country.region,
-      capital: country.capital ? country.capital[0] : '-',
+      name: name,
+      population: population,
+      region: region,
+      capitals: capital, // Because capital is array
     });
 
     return {
+      flags,
       countryDesc,
     };
   },

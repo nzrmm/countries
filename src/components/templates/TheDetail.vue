@@ -19,11 +19,11 @@ export default {
     const store = useStore();
 
     const isLoading = computed(() => {
-      return store.getters.isLoading;
+      return store.state.isLoading;
     });
 
     const country = computed(() => {
-      return store.getters.country;
+      return store.state.country;
     });
 
     return {
