@@ -1,35 +1,29 @@
 <template>
   <div class="w-1/2">
-    <p class="mb-3">
-      Official Name:
-      <span class="text-gray-900/60 dark:text-white/60">
-        {{ officialName }}
-      </span>
-    </p>
-    <p class="mb-3">
-      Population:
-      <span class="text-gray-900/60 dark:text-white/60">
-        {{ population }}
-      </span>
-    </p>
-    <p class="mb-3">
-      Region:
-      <span class="text-gray-900/60 dark:text-white/60">
-        {{ region }}
-      </span>
-    </p>
-    <p class="mb-3">
-      Sub Region:
-      <span class="text-gray-900/60 dark:text-white/60">
-        {{ subregion }}
-      </span>
-    </p>
-    <p class="mb-3">
-      Capital:
-      <span class="text-gray-900/60 dark:text-white/60">
-        {{ capital }}
-      </span>
-    </p>
+    <Information class="mb-3">
+      <template v-slot:key>Official Name</template>
+      <template v-slot:val>{{ officialName }}</template>
+    </Information>
+    <Information class="mb-3">
+      <template v-slot:key>Population</template>
+      <template v-slot:val>{{ population }}</template>
+    </Information>
+    <Information class="mb-3">
+      <template v-slot:key>Region</template>
+      <template v-slot:val>{{ region }}</template>
+    </Information>
+    <Information class="mb-3">
+      <template v-slot:key>Sub Region</template>
+      <template v-slot:val>{{ subregion }}</template>
+    </Information>
+    <Information class="mb-3">
+      <template v-slot:key>Capital</template>
+      <template v-slot:val>
+        <span v-for="cap in capital">
+          {{ cap }} {{ capital.length - 1 ? ', ' : '' }}
+        </span>
+      </template>
+    </Information>
   </div>
 </template>
 

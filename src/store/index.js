@@ -73,7 +73,7 @@ const store = createStore({
     getCountryByName({ state, commit }, name) {
       state.isLoading = true;
       axios
-        .get(`${detailCountry}${name}`)
+        .get(`${detailCountry}${name}?fullText=true`)
         .then((response) => {
           commit('getCountryByName', response.data[0]);
         })

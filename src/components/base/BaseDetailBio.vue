@@ -2,7 +2,7 @@
   <div class="w-6/12 text-gray-900 dark:text-white">
     <h1 class="mb-8 text-3xl font-semibold">{{ name.common }}</h1>
 
-    <div class="mb-12 flex">
+    <div class="mb-12 flex space-x-6">
       <BaseDetailDescLeft :detail="detailDescLeft" />
       <BaseDetailDescRight :detail="detailDescRight" />
     </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive } from 'vue';
 
 export default {
   props: ['country'],
@@ -43,11 +43,11 @@ export default {
       population: population,
       region: region,
       subregion: subregion,
-      capital: capital ? capital[0] : '-',
+      capital: capital ? capital : '-',
     });
 
     const detailDescRight = reactive({
-      tld: tld ? tld[0] : '-',
+      tld: tld ? tld : '-',
       currencies: currencies,
       languages: languages,
     });

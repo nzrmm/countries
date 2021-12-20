@@ -1,26 +1,31 @@
 <template>
   <div class="1/2">
-    <p class="mb-3">
-      Top Level Domain:
-      <span class="text-gray-900/60 dark:text-white/60">{{ tld }}</span>
-    </p>
-    <p class="mb-3">
-      Currencies:
-      <span class="text-gray-900/60 dark:text-white/60">
-        {{ currencies }}
-      </span>
-    </p>
-    <p class="mb-3">
-      Languages:
-      <span class="text-gray-900/60 dark:text-white/60">
-        {{ languages }}
-      </span>
-    </p>
+    <Information class="mb-3">
+      <template v-slot:key>Top Level Domain</template>
+      <template v-slot:val>{{ tld }}</template>
+    </Information>
+
+    <Information class="mb-3">
+      <template v-slot:key>Currencies</template>
+      <template v-slot:val>
+        <span v-for="currency in currencies">
+          {{ currency.name }} ({{ currency.symbol }})
+        </span>
+      </template>
+    </Information>
+
+    <Information class="mb-3">
+      <template v-slot:key>Languages</template>
+      <template v-slot:val>
+        <span v-for="language in languages"> {{ language }}, </span>
+      </template>
+    </Information>
   </div>
 </template>
 
 <script>
 import { toRefs } from 'vue';
+
 export default {
   props: ['detail'],
   setup(props) {

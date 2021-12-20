@@ -7,17 +7,17 @@
     >
 
     <div class="mt-6">
-      <Information>
+      <Information class="mb-1.5">
         <template v-slot:key>Population</template>
         <template v-slot:val>{{ population }}</template>
       </Information>
 
-      <Information>
+      <Information class="mb-1.5">
         <template v-slot:key>Region</template>
         <template v-slot:val>{{ region }}</template>
       </Information>
 
-      <Information>
+      <Information class="mb-1.5">
         <template v-slot:key>Capital</template>
         <template v-for="capital in capitals" v-slot:val>
           {{ capital }}
