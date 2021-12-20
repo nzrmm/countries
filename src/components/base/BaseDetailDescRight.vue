@@ -2,22 +2,26 @@
   <div class="1/2">
     <Information class="mb-3">
       <template v-slot:key>Top Level Domain</template>
-      <template v-slot:val>{{ tld }}</template>
+      <template v-slot:val>
+        <template v-for="tld in tlds">
+          {{ tld }}
+        </template>
+      </template>
     </Information>
 
     <Information class="mb-3">
       <template v-slot:key>Currencies</template>
       <template v-slot:val>
-        <span v-for="currency in currencies">
+        <template v-for="currency in currencies">
           {{ currency.name }} ({{ currency.symbol }})
-        </span>
+        </template>
       </template>
     </Information>
 
     <Information class="mb-3">
       <template v-slot:key>Languages</template>
       <template v-slot:val>
-        <span v-for="language in languages"> {{ language }}, </span>
+        <template v-for="language in languages"> {{ language }}, </template>
       </template>
     </Information>
   </div>

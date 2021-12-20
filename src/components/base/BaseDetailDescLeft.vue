@@ -19,9 +19,9 @@
     <Information class="mb-3">
       <template v-slot:key>Capital</template>
       <template v-slot:val>
-        <span v-for="cap in capital">
+        <template v-for="cap in capital">
           {{ cap }} {{ capital.length - 1 ? ', ' : '' }}
-        </span>
+        </template>
       </template>
     </Information>
   </div>

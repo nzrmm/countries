@@ -24,7 +24,7 @@ export default {
       name: name,
       population: population,
       region: region,
-      capitals: capital, // Because capital is array
+      capital: capital ?? '-',
     });
 
     return {

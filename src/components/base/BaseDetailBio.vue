@@ -8,14 +8,16 @@
     </div>
     <div class="flex items-center text-gray-900 dark:text-white">
       <p class="mr-2">Border Countries :</p>
-      <ButtonSmall
-        v-if="borders"
-        v-for="(border, index) in borders"
-        :key="index"
-      >
-        {{ border }}
-      </ButtonSmall>
-      <span v-else>None</span>
+      <div>
+        <ButtonSmall
+          v-if="borders"
+          v-for="(border, index) in borders"
+          :key="index"
+        >
+          {{ border }}
+        </ButtonSmall>
+        <span v-else>None</span>
+      </div>
     </div>
   </div>
 </template>
@@ -47,7 +49,7 @@ export default {
     });
 
     const detailDescRight = reactive({
-      tld: tld ? tld : '-',
+      tlds: tld ? tld : '-',
       currencies: currencies,
       languages: languages,
     });
