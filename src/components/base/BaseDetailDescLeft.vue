@@ -28,11 +28,18 @@
 </template>
 
 <script>
-import { toRefs } from 'vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 export default {
-  props: ['detail'],
-  setup(props) {
-    return { ...toRefs(props.detail) };
+  setup() {
+    const store = useStore();
+    const detailDescLeft = computed(() => {
+      return store.getters.detailDescLeft;
+    });
+
+    const { officialName, population, region, subregion, capital } =
+      detailDescLeft.value;
+    return { officialName, population, region, subregion, capital };
   },
 };
 </script>

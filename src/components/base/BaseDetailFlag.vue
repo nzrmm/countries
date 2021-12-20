@@ -7,10 +7,15 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
+import { computed } from 'vue';
+
 export default {
-  props: ['country'],
-  setup(props) {
-    const { flags } = props.country;
+  setup() {
+    const store = useStore();
+    const flags = computed(() => {
+      return store.getters.detailFlag;
+    });
 
     return {
       flags,

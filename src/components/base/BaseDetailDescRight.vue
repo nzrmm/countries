@@ -28,12 +28,18 @@
 </template>
 
 <script>
-import { toRefs } from 'vue';
-
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 export default {
-  props: ['detail'],
-  setup(props) {
-    return { ...toRefs(props.detail) };
+  setup() {
+    const store = useStore();
+
+    const detailDescRight = computed(() => {
+      return store.getters.detailDescRight;
+    });
+
+    const { tlds, currencies, languages } = detailDescRight.value;
+    return { tlds, currencies, languages };
   },
 };
 </script>

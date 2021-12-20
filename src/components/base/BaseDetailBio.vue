@@ -3,8 +3,8 @@
     <h1 class="mb-8 text-3xl font-semibold">{{ name.common }}</h1>
 
     <div class="mb-12 flex space-x-6">
-      <BaseDetailDescLeft :detail="detailDescLeft" />
-      <BaseDetailDescRight :detail="detailDescRight" />
+      <BaseDetailDescLeft />
+      <BaseDetailDescRight />
     </div>
     <div class="flex items-center text-gray-900 dark:text-white">
       <p class="mr-2">Border Countries :</p>
@@ -23,42 +23,22 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
-  props: ['country'],
-  setup(props) {
-    const {
-      name,
-      population,
-      region,
-      subregion,
-      capital,
-      tld,
-      currencies,
-      languages,
-      borders,
-    } = props.country;
+  setup() {
+    const store = useStore();
 
-    const detailDescLeft = reactive({
-      officialName: name.official,
-      population: population,
-      region: region,
-      subregion: subregion,
-      capital: capital ? capital : '-',
+    const detailBio = computed(() => {
+      return store.getters.detailBio;
     });
 
-    const detailDescRight = reactive({
-      tlds: tld ? tld : '-',
-      currencies: currencies,
-      languages: languages,
-    });
+    const { name, borders } = detailBio.value;
 
     return {
       name,
       borders,
-      detailDescLeft,
-      detailDescRight,
     };
   },
 };

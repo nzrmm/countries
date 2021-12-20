@@ -31,7 +31,6 @@
 
 <script>
 import { toRefs } from 'vue';
-import Information from '../atoms/Information.vue';
 
 export default {
   props: ['countryDesc'],

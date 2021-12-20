@@ -1,6 +1,5 @@
 import { createStore } from 'vuex';
-import axios from 'axios';
-import { allCountries, regionCountries, detailCountry } from '@/constant/api';
+import ApiServices from '@/services/ApiServices';
 
 const store = createStore({
   state: {
@@ -22,12 +21,38 @@ const store = createStore({
         return filterCountries;
       }
     },
+    detailFlag(state) {
+      const { flags } = state.country;
+      return flags;
+    },
+    detailBio(state) {
+      const { name, borders } = state.country;
+      return { name, borders };
+    },
+    detailDescLeft(state) {
+      const { name, population, region, subregion, capital } = state.country;
+      return {
+        officialName: name.official,
+        population: population,
+        region: region,
+        subregion: subregion,
+        capital: capital ? capital : '-',
+      };
+    },
+    detailDescRight(state) {
+      const { tld, currencies, languages } = state.country;
+      return {
+        tlds: tld ? tld : '-',
+        currencies: currencies,
+        languages: languages,
+      };
+    },
   },
   mutations: {
-    getAllCountries(state, data) {
+    getCountries(state, data) {
       state.countries = data;
     },
-    getRegionCountries(state, data) {
+    getRegion(state, data) {
       state.countries = data;
     },
     handleSearchKeyword(state, keyword) {
@@ -38,12 +63,11 @@ const store = createStore({
     },
   },
   actions: {
-    getAllCountries({ state, commit }) {
+    getCountries({ state, commit }) {
       state.isLoading = true;
-      axios
-        .get(allCountries)
+      ApiServices.getCountries()
         .then((response) => {
-          commit('getAllCountries', response.data);
+          commit('getCountries', response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -52,15 +76,14 @@ const store = createStore({
           state.isLoading = false;
         });
     },
-    getRegionCountries({ state, commit, dispatch }, region) {
+    getRegion({ state, commit, dispatch }, region) {
       if (region === 'all') {
-        dispatch('getAllCountries');
+        dispatch('getCountries');
       } else {
         state.isLoading = true;
-        axios
-          .get(`${regionCountries}${region}`)
+        ApiServices.getRegion(region)
           .then((response) => {
-            commit('getRegionCountries', response.data);
+            commit('getRegion', response.data);
           })
           .catch((error) => {
             alert('Region not found !');
@@ -72,8 +95,7 @@ const store = createStore({
     },
     getCountryByName({ state, commit }, name) {
       state.isLoading = true;
-      axios
-        .get(`${detailCountry}${name}?fullText=true`)
+      ApiServices.getCountry(`name/${name}/?fullText=true`)
         .then((response) => {
           commit('getCountryByName', response.data[0]);
         })

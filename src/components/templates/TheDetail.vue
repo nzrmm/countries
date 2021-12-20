@@ -4,8 +4,8 @@
   </div>
   <div v-else>
     <div v-if="country" class="my-12 w-full flex justify-between items-center">
-      <BaseDetailFlag :country="country" />
-      <BaseDetailBio :country="country" />
+      <BaseDetailFlag />
+      <BaseDetailBio />
     </div>
   </div>
 </template>
