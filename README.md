@@ -1,7 +1,28 @@
-# Vue 3 + Vite
+# Description
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Slicing design Countries site with Vue Js and Tailwind CSS.
 
-## Recommended IDE Setup
+#### What was learned in this project :
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+- Make a reusable component in Vue Js
+- Make a reusable axios
+- Implement [vue router](https://next.router.vuejs.org/guide/) from routing page
+- Implement [vuex](https://next.vuex.vuejs.org/) from state management
+- Make responsive in all device
+
+#### Feature in this project :
+
+- Use absolute path with '@/'
+- Use auto import component using [unplugin-vue-component](https://github.com/antfu/unplugin-vue-components)
+
+# Tech Stack
+
+- [Vue Js](https://v3.vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://v2.tailwindcss.com/)
+- [Axios](https://axios-http.com/)
+
+# Challenge
+
+- Challenge : https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca
+- Api Services : https://restcountries.com/#api-endpoints-v3
