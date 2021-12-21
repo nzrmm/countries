@@ -3,7 +3,10 @@
     <IconLoading />
   </div>
   <div v-else>
-    <div v-if="country" class="my-12 w-full flex justify-between items-center">
+    <div
+      v-if="country"
+      class="mt-12 w-full text-center md:text-left flex flex-col lg:flex-row justify-between items-center"
+    >
       <BaseDetailFlag />
       <BaseDetailBio />
     </div>

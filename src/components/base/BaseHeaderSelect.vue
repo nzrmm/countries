@@ -1,7 +1,7 @@
 <template>
   <select
     @change="getRegion($event)"
-    class="px-4 py-4 rounded-lg bg-white dark:bg-dark-d-blue text-gray-900 dark:text-white text-sm focus:ring-2 ring-dark-vd-blue/10 dark:ring-white/10 outline-none"
+    class="w-4/12 lg:w-2/12 px-4 py-4 rounded-lg bg-white dark:bg-dark-d-blue text-gray-900 dark:text-white text-sm focus:ring-2 ring-dark-vd-blue/10 dark:ring-white/10 outline-none shadow-md shadow-dark-vd-blue/10 dark:shadown-none"
   >
     <option value="" disabled>Select Region</option>
     <option v-for="region in regions" :value="region.value">

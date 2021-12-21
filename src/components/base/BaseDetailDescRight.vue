@@ -1,5 +1,5 @@
 <template>
-  <div class="1/2">
+  <div class="w-12/12 md:w-6/12">
     <Information class="mb-3">
       <template v-slot:key>Top Level Domain</template>
       <template v-slot:val>
